@@ -14,3 +14,8 @@ spotify api->
 2. get request with track ID grab all metadata about track
 3. Display the relevant data (album cover and redirecting url)
 4. animation using framer motion
+
+### fonts used
+
+1. editorial new
+2. Tiempos
