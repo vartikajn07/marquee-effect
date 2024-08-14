@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+  font-family: "editorialnew";
+}
+@font-face {
+  font-family: "editorialnew";
+  src: url(./assets/ppeditorialnew-ultralightitalic-webfont.cf696db0.ttf);
+}
+@font-face {
+  font-family: "tiempos";
+  src: url(./assets/TestTiemposFine-RegularItalic-BF66457a50e36f9.ttf);
+}
+:root {
+  --background-color: white;
+  --text-color: black;
+}
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+div {
+  width: 100vw;
+  height: 100%;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 180px 0;
+  padding: 40px 0;
+  cursor: default;
+  position: relative;
+}
+.heading {
+  position: absolute;
+  font-family: "tiempos";
+  font-weight: 600;
+  top: 25px;
+  left: 25px;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+.heading2 {
+  position: absolute;
+  font-family: "tiempos";
+  font-weight: 100;
+  top: 60px;
+  left: 25px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.heading2 a {
+  text-decoration: underline;
+  color: #dea561;
+  font-weight: bold;
+}
+.marquee {
+  overflow: hidden;
+  position: relative;
+  --offset: 20vw;
+  --move-initial: 0;
+  --move-final: -50%;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 230px;
+  height: 230px;
+  z-index: 999;
+}
+
+.marquee__inner {
+  width: fit-content;
+  display: flex;
+  position: relative;
+  transform: translate3d(var(--move-initial), 0, 0);
+  animation: marquee 40s linear infinite;
+  animation-play-state: running;
+}
+
+.marquee h1 {
+  font-size: 55px;
+  font-weight: 200;
+  white-space: nowrap;
+  padding: 0 0.7vw;
+  cursor: pointer;
+}
+.mode {
+  position: absolute;
+  top: 45px;
+  right: 80px;
+  scale: 3;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(var(--move-initial), 0, 0);
+  }
+  100% {
+    transform: translate3d(var(--move-final), 0, 0);
+  }
+}
+@media (max-width: 768px) {
+  .custom-cursor {
+    width: 150px;
+    height: 150px;
+  }
+  .main {
+    margin: 200px 0;
+    padding: 50px 0;
+  }
+  .marquee h1 {
+    font-size: 27px;
+  }
+  .heading {
+    font-size: 14px;
+    width: 12rem;
+    left: 10px;
+  }
+  .heading2 {
+    font-size: 12px;
+    left: 10px;
+    top: 62px;
+  }
+  .mode {
+    scale: 2;
+    right: 20px;
+    top: 35px;
+  }
+}
