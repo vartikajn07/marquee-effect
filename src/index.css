@@ -119,21 +119,22 @@ div {
     padding: 50px 0;
   }
   .marquee h1 {
-    font-size: 27px;
+    font-size: 35px;
+    padding: 0 1.3vw;
   }
   .heading {
     font-size: 14px;
     width: 12rem;
-    left: 10px;
+    left: 13px;
   }
   .heading2 {
     font-size: 12px;
-    left: 10px;
+    left: 13px;
     top: 62px;
   }
   .mode {
     scale: 2;
-    right: 20px;
+    right: 25px;
     top: 35px;
   }
 }

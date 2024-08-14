@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import "@theme-toggles/react/css/Within.css";
 import { Within } from "@theme-toggles/react";
 
-const client_id = import.meta.env.VITE_APP_SPOTIFY_CLIENT_ID;
-const client_secret = import.meta.env.VITE_APP_SPOTIFY_CLIENT_SECRET;
 const App = () => {
   const [accessToken, setAccessToken] = useState("");
   const [albumCover, setAlbumCover] = useState("");
@@ -13,22 +11,19 @@ const App = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isToggled, setToggle] = useState(false);
   const position = useMousePosition();
+  //API access token
   useEffect(() => {
-    //API access token
-    var authParameters = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body:
-        "grant_type=client_credentials&client_id=" +
-        client_id +
-        "&client_secret=" +
-        client_secret,
+    const fetchAccessToken = async () => {
+      try {
+        const response = await fetch("/api/spotify-auth");
+        const data = await response.json();
+        setAccessToken(data.access_token);
+      } catch (error) {
+        console.error("Error fetching access token:", error);
+      }
     };
-    fetch("https://accounts.spotify.com/api/token", authParameters)
-      .then((result) => result.json())
-      .then((data) => setAccessToken(data.access_token));
+
+    fetchAccessToken();
   }, []);
 
   //custom-cursor and api requests
