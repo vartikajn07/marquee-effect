@@ -18,4 +18,4 @@ spotify api->
 ### fonts used
 
 1. editorial new
-2. Tiempos
+2. Tiempos italic
