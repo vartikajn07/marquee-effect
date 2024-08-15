@@ -44,13 +44,17 @@ const App = () => {
       const data = await response.json();
       if (data.tracks.items.length > 0) {
         const track = data.tracks.items[0];
+        const trackId = track.id; //track id for mobile devices
+        const spotifyUri = `spotify:track:${trackId}`;
 
         setAlbumCover(track.album.images[0].url);
-        setSpotifyUrl(track.external_urls.spotify);
+        setSpotifyUrl(track.external_urls.spotify); //fallback to web version if spotify app is not installed on mobile
 
         //touch events for mobile devices
         if ("ontouchstart" in window) {
-          window.open(track.external_urls.spotify, "_blank");
+          setTimeout(() => {
+            window.location.href = spotifyUri;
+          }, 300);
         }
       }
     }
