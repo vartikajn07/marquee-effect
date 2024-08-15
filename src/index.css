@@ -138,8 +138,3 @@ div {
     top: 35px;
   }
 }
-@media (hover: none) {
-  .custom-cursor {
-    display: none;
-  }
-}

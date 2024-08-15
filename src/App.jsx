@@ -47,6 +47,11 @@ const App = () => {
 
         setAlbumCover(track.album.images[0].url);
         setSpotifyUrl(track.external_urls.spotify);
+
+        //touch events for mobile devices
+        if ("ontouchstart" in window) {
+          window.open(track.external_urls.spotify, "_blank");
+        }
       }
     }
   };
@@ -67,6 +72,7 @@ const App = () => {
       document.body.classList.remove("dark-mode");
     }
   }, [isToggled]);
+
   return (
     <div>
       <h1 class="heading">a simple marquee effect integrated w spotify API</h1>
@@ -108,6 +114,7 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
+                onTouchStart={() => handleMouseEnter(songTitle)}
               >
                 {songTitle}
               </h1>
@@ -132,6 +139,9 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
+                onTouchStart={() => {
+                  handleMouseEnter(songTitle);
+                }}
               >
                 {songTitle}
               </h1>
@@ -156,6 +166,7 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
+                onTouchStart={() => handleMouseEnter(songTitle)}
               >
                 {songTitle}
               </h1>
