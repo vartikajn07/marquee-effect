@@ -2,7 +2,10 @@
 
 Created a marquee that plays the song title on spotify when clicked.
 
+Check the [app](https://marquee-effect-nine.vercel.app/) here
+
 Based on the marquee component by [white-coffee](https://white-coffee.com/)
+
 ![white-coffee](https://github.com/user-attachments/assets/1b725970-8ae0-4f51-9de7-90c1e43a0c3a)
 
 ## Tech Used
