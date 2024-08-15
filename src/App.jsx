@@ -46,15 +46,7 @@ const App = () => {
         const track = data.tracks.items[0];
 
         setAlbumCover(track.album.images[0].url);
-        setSpotifyUrl(track.external_urls.spotify); //fallback to web version if spotify app is not installed on mobile
-
-        //touch events for mobile devices
-        if ("ontouchstart" in window) {
-          window.location.href = spotifyUri;
-          setTimeout(() => {
-            window.open(spotifyUrl, "_blank");
-          }, 500);
-        }
+        setSpotifyUrl(track.external_urls.spotify);
       }
     }
   };
@@ -66,6 +58,20 @@ const App = () => {
     if (spotifyUrl) {
       window.open(spotifyUrl, "_blank");
     }
+  };
+  const handleTouchStart = (e) => {
+    e.preventDefault(); // Prevent default touch action
+    handleMouseEnter(e.currentTarget.textContent); // Show custom cursor
+  };
+
+  const handleTouchEnd = () => {
+    handleMouseLeave(); // Hide custom cursor and redirect to Spotify
+    if (spotifyUrl) {
+      window.open(spotifyUrl, "_blank"); // Open the song in web version
+    }
+  };
+  const handleMouseDown = (e) => {
+    e.preventDefault(); // Prevent default mouse behavior during touch
   };
   //dark mode
   useEffect(() => {
@@ -117,10 +123,9 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
-                onTouchStart={(e) => {
-                  e.preventDefault(); // Prevents touch event from triggering click
-                  handleClick();
-                }}
+                onTouchStart={handleTouchStart} // For mobile touch start
+                onTouchEnd={handleTouchEnd} // For mobile touch end
+                onMouseDown={handleMouseDown} // Prevent mouse events from firing during touch
               >
                 {songTitle}
               </h1>
@@ -145,10 +150,9 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
-                onTouchStart={(e) => {
-                  e.preventDefault(); // Prevents touch event from triggering click
-                  handleClick();
-                }}
+                onTouchStart={handleTouchStart} // For mobile touch start
+                onTouchEnd={handleTouchEnd} // For mobile touch end
+                onMouseDown={handleMouseDown} // Prevent mouse events from firing during touch
               >
                 {songTitle}
               </h1>
@@ -173,10 +177,9 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
-                onTouchStart={(e) => {
-                  e.preventDefault(); // Prevents touch event from triggering click
-                  handleClick();
-                }}
+                onTouchStart={handleTouchStart} // For mobile touch start
+                onTouchEnd={handleTouchEnd} // For mobile touch end
+                onMouseDown={handleMouseDown} // Prevent mouse events from firing during touch
               >
                 {songTitle}
               </h1>
