@@ -52,9 +52,10 @@ const App = () => {
 
         //touch events for mobile devices
         if ("ontouchstart" in window) {
+          window.location.href = spotifyUri;
           setTimeout(() => {
-            window.location.href = spotifyUri;
-          }, 300);
+            window.open(spotifyUrl, "_blank");
+          }, 500);
         }
       }
     }
@@ -63,7 +64,9 @@ const App = () => {
     setIsHovered(false);
     setAlbumCover("");
   };
-  const handleClick = () => {
+  const handleClick = (event) => {
+    if (event.type === "touchstart") return;
+
     if (spotifyUrl) {
       window.open(spotifyUrl, "_blank");
     }
@@ -118,7 +121,10 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
-                onTouchStart={() => handleMouseEnter(songTitle)}
+                onTouchStart={(e) => {
+                  e.preventDefault(); // Prevents touch event from triggering click
+                  handleMouseEnter(songTitle);
+                }}
               >
                 {songTitle}
               </h1>
@@ -143,7 +149,8 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
-                onTouchStart={() => {
+                onTouchStart={(e) => {
+                  e.preventDefault(); // Prevents touch event from triggering click
                   handleMouseEnter(songTitle);
                 }}
               >
@@ -170,7 +177,10 @@ const App = () => {
                 key={index}
                 onMouseEnter={() => handleMouseEnter(songTitle)}
                 onClick={handleClick}
-                onTouchStart={() => handleMouseEnter(songTitle)}
+                onTouchStart={(e) => {
+                  e.preventDefault(); // Prevents touch event from triggering click
+                  handleMouseEnter(songTitle);
+                }}
               >
                 {songTitle}
               </h1>
