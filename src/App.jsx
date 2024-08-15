@@ -44,8 +44,6 @@ const App = () => {
       const data = await response.json();
       if (data.tracks.items.length > 0) {
         const track = data.tracks.items[0];
-        const trackId = track.id; //track id for mobile devices
-        const spotifyUri = `spotify:track:${trackId}`;
 
         setAlbumCover(track.album.images[0].url);
         setSpotifyUrl(track.external_urls.spotify); //fallback to web version if spotify app is not installed on mobile
@@ -64,9 +62,7 @@ const App = () => {
     setIsHovered(false);
     setAlbumCover("");
   };
-  const handleClick = (event) => {
-    if (event.type === "touchstart") return;
-
+  const handleClick = () => {
     if (spotifyUrl) {
       window.open(spotifyUrl, "_blank");
     }
@@ -123,7 +119,7 @@ const App = () => {
                 onClick={handleClick}
                 onTouchStart={(e) => {
                   e.preventDefault(); // Prevents touch event from triggering click
-                  handleMouseEnter(songTitle);
+                  handleClick();
                 }}
               >
                 {songTitle}
@@ -151,7 +147,7 @@ const App = () => {
                 onClick={handleClick}
                 onTouchStart={(e) => {
                   e.preventDefault(); // Prevents touch event from triggering click
-                  handleMouseEnter(songTitle);
+                  handleClick();
                 }}
               >
                 {songTitle}
@@ -179,7 +175,7 @@ const App = () => {
                 onClick={handleClick}
                 onTouchStart={(e) => {
                   e.preventDefault(); // Prevents touch event from triggering click
-                  handleMouseEnter(songTitle);
+                  handleClick();
                 }}
               >
                 {songTitle}
