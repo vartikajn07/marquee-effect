@@ -17,6 +17,7 @@ Based on the marquee component by [white-coffee](https://white-coffee.com/)
 ## Other features 
 - Mobile responsive
 - Animation using framer motion
+- Dark mode enabled
 
 ## Integrating Spotify API
 The working of the app with respect to the API is as:
